@@ -7,7 +7,7 @@ pub struct TicketTitle(String);
 pub enum TicketTitleError {
     #[error("The title cannot be empty")]
     Empty,
-    #[error("The title cannot be longer than 50 bytes")]
+    #[error("The title cannot be longer than 50 characters")]
     TooLong,
 }
 
@@ -61,7 +61,10 @@ mod tests {
     #[test]
     fn test_try_from_long_string() {
         let err = TicketTitle::try_from(overly_long_title()).unwrap_err();
-        assert_eq!(err.to_string(), "The title cannot be longer than 50 bytes");
+        assert_eq!(
+            err.to_string(),
+            "The title cannot be longer than 50 characters"
+        );
     }
 
     #[test]

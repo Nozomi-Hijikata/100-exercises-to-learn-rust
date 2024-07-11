@@ -21,13 +21,13 @@ impl Ticket {
             panic!("Title cannot be empty");
         }
         if title.len() > 50 {
-            panic!("Title cannot be longer than 50 bytes");
+            panic!("Title cannot be longer than 50 characters");
         }
         if description.is_empty() {
             panic!("Description cannot be empty");
         }
         if description.len() > 500 {
-            panic!("Description cannot be longer than 500 bytes");
+            panic!("Description cannot be longer than 500 characters");
         }
 
         Ticket {
@@ -59,13 +59,13 @@ mod tests {
     fn title_cannot_be_longer_than_fifty_chars() {
         let error =
             Ticket::new(overly_long_title(), valid_description(), Status::ToDo).unwrap_err();
-        assert_eq!(error, "Title cannot be longer than 50 bytes");
+        assert_eq!(error, "Title cannot be longer than 50 characters");
     }
 
     #[test]
     fn description_cannot_be_longer_than_500_chars() {
         let error =
             Ticket::new(valid_title(), overly_long_description(), Status::ToDo).unwrap_err();
-        assert_eq!(error, "Description cannot be longer than 500 bytes");
+        assert_eq!(error, "Description cannot be longer than 500 characters");
     }
 }
